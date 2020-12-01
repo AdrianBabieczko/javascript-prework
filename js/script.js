@@ -1,14 +1,18 @@
 function getMoveName(argMoveId) {
   if (argMoveId == 1) {
     return "kamień";
-  } else if (randomNumber == 2) {
-    return "papier";
-  } else if (randomNumber == 3) {
-    return "nozyce";
-  } else {
-    printMessage("Nie znam ruchu o id " + argMoveId + ".");
-    return "nieznany ruch";
   }
+
+  if (randomNumber == 2) {
+    return "papier";
+  }
+
+  if (randomNumber == 3) {
+    return "nozyce";
+  }
+
+  printMessage("Nie znam ruchu o id " + argMoveId + ".");
+  return "nieznany ruch";
 }
 
 function getResult(compMove, userMove) {
@@ -18,15 +22,17 @@ function getResult(compMove, userMove) {
 
   if (compMove === userMove) {
     return "Remis!";
-  } else if (
+  }
+
+  if (
     (compMove == "kamień" && userMove == "nozyce") ||
     (compMove == "papier" && userMove == "kamień") ||
     (compMove == "nozyce" && userMove == "papier")
   ) {
     return "Tym razem przegrywasz :(";
-  } else {
-    return "Ty wygrywasz!";
   }
+
+  return "Ty wygrywasz!";
 }
 
 function displayResult(argComputerMove, argPlayerMove) {
