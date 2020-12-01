@@ -23,26 +23,22 @@ function getResult(compMove, userMove) {
     (compMove == "papier" && userMove == "kamień") ||
     (compMove == "nozyce" && userMove == "papier")
   ) {
-    return "Ja wygrywam!";
+    return "Tym razem przegrywasz :(";
   } else {
     return "Ty wygrywasz!";
   }
 }
 
+function displayResult(argComputerMove, argPlayerMove) {
+  printMessage("Zagrałem " + argComputerMove + ", a Ty " + argPlayerMove);
+
+  printMessage(getResult(computerMove, playerMove));
+}
+
 let randomNumber = Math.floor(Math.random() * 3 + 1);
-
-console.log("Wylosowana liczba to: " + randomNumber);
-
 let computerMove = getMoveName(randomNumber);
 
-printMessage("Mój ruch to: " + computerMove);
-
 let playerInput = prompt("Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.");
-
-console.log("Gracz wpisał: " + playerInput);
-
 let playerMove = getMoveName(playerInput);
 
-printMessage("Twój ruch to: " + playerMove);
-
-printMessage(getResult(computerMove, playerMove));
+displayResult(computerMove, playerMove);
