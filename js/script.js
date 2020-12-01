@@ -11,6 +11,24 @@ function getMoveName(argMoveId) {
   }
 }
 
+function getResult(compMove, userMove) {
+  if (computerMove == "nieznany ruch" || userMove == "nieznany ruch") {
+    return "Coś poszło nie tak. Spróbuj jeszcze raz!";
+  }
+
+  if (compMove === userMove) {
+    return "Remis!";
+  } else if (
+    (compMove == "kamień" && userMove == "nozyce") ||
+    (compMove == "papier" && userMove == "kamień") ||
+    (compMove == "nozyce" && userMove == "papier")
+  ) {
+    return "Ja wygrywam!";
+  } else {
+    return "Ty wygrywasz!";
+  }
+}
+
 let randomNumber = Math.floor(Math.random() * 3 + 1);
 
 console.log("Wylosowana liczba to: " + randomNumber);
@@ -27,42 +45,4 @@ let playerMove = getMoveName(playerInput);
 
 printMessage("Twój ruch to: " + playerMove);
 
-if (computerMove == "kamień" && playerMove == "papier") {
-  printMessage("Ty wygrywasz!");
-}
-
-if (computerMove == "kamień" && playerMove == "kamień") {
-  printMessage("Remis!");
-}
-
-if (computerMove == "kamień" && playerMove == "nozyce") {
-  printMessage("Ja wygrywam!");
-}
-
-if (computerMove == "papier" && playerMove == "papier") {
-  printMessage("Remis!");
-}
-
-if (computerMove == "papier" && playerMove == "kamień") {
-  printMessage("Ja wygrywam!");
-}
-
-if (computerMove == "papier" && playerMove == "nozyce") {
-  printMessage("Ty wygrywasz!");
-}
-
-if (computerMove == "nozyce" && playerMove == "papier") {
-  printMessage("Ja wygrywam!");
-}
-
-if (computerMove == "nozyce" && playerMove == "kamień") {
-  printMessage("Ty wygrywasz!");
-}
-
-if (computerMove == "nozyce" && playerMove == "nozyce") {
-  printMessage("Remis!");
-}
-
-if (computerMove == "nieznany ruch" || playerMove == "nieznany ruch") {
-  printMessage("Coś poszło nie tak. Spróbuj jeszcze raz!");
-}
+printMessage(getResult(computerMove, playerMove));
