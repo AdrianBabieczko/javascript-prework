@@ -4,6 +4,28 @@
   const scissors = "nozyce";
   const unknowMove = "nieznany ruch";
 
+  const gameResult = function (argComputerMove, argPlayerMove) {
+    const draw = "Remis";
+
+    if (argComputerMove == unknowMove || argPlayerMove == unknowMove) {
+      return "Coś poszło nie tak. Spróbuj jeszcze raz!";
+    }
+
+    if (argComputerMove === argPlayerMove) {
+      return draw;
+    }
+
+    if (
+      (argComputerMove == rock && argPlayerMove == scissors) ||
+      (argComputerMove == paper && argPlayerMove == rock) ||
+      (argComputerMove == scissors && argPlayerMove == paper)
+    ) {
+      return "Tym razem przegrywasz :(";
+    }
+
+    return "Ty wygrywasz!";
+  };
+
   function playGame(playerInput) {
     clearMessages();
 
@@ -27,29 +49,7 @@
     function displayResult(argComputerMove, argPlayerMove) {
       printMessage("Zagrałem " + argComputerMove + ", a Ty " + argPlayerMove);
 
-      const gameResult = function (argComputerMove, argPlayerMove) {
-        const draw = "Remis";
-
-        if (computerMove == unknowMove || userMove == unknowMove) {
-          return "Coś poszło nie tak. Spróbuj jeszcze raz!";
-        }
-
-        if (compMove === userMove) {
-          return draw;
-        }
-
-        if (
-          (compMove == rock && userMove == scissors) ||
-          (compMove == paper && userMove == rock) ||
-          (compMove == scissors && userMove == paper)
-        ) {
-          return "Tym razem przegrywasz :(";
-        }
-
-        return "Ty wygrywasz!";
-      };
-
-      printMessage(gameResult);
+      printMessage(gameResult(argComputerMove, argPlayerMove));
     }
 
     let randomNumber = Math.floor(Math.random() * 3 + 1);
